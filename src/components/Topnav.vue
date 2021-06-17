@@ -1,12 +1,24 @@
 <template>
   <div class="topnav">
-    <div class="logo">Logo</div>
+    <div class="logo" @click="ToggleAside">Logo</div>
     <div class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
     </div>
   </div>
 </template>
+<script lang='ts'>
+import { inject, Ref } from "vue";
+export default {
+  setup() {
+    const asideVisible = inject<Ref<boolean>>("asideVisible"); // get
+    const ToggleAside = () => {
+      asideVisible.value = !asideVisible.value;
+    };
+    return { ToggleAside };
+  },
+};
+</script>
 <style lang="scss" scoped>
 .topnav {
   background: pink;
