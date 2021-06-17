@@ -1,10 +1,20 @@
 <template>
-  <button>
+  <button @click="toggle" :class="{ checked: value }">
     <span></span>
   </button>
 </template>
 <script lang="ts">
-export default {};
+export default {
+  props: {
+    value: Boolean,
+  },
+  setup(props, context) {
+    const toggle = () => {
+      context.emit("update:value", !props.value);
+    };
+    return { toggle };
+  },
+};
 </script>
 <style lang="scss" scoped>
 $h: 22px;
