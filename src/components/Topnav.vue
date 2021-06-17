@@ -5,6 +5,7 @@
       <li>菜单1</li>
       <li>菜单2</li>
     </div>
+    <span class="toggleAside"></span>
   </div>
 </template>
 <script lang='ts'>
