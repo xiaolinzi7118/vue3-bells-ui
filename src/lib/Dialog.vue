@@ -4,10 +4,12 @@
     <div class="linzi-dialog-wrapper">
       <div class="linzi-dialog">
         <header>
-          标题
+          {{ title }}
           <span @click="close" class="linzi-dialog-close"></span>
         </header>
-        <main>第一行字</main>
+        <main>
+          <slot />
+        </main>
         <footer>
           <Button @click="ok" level="main">OK</Button>
           <Button @click="cancel">Cancel</Button>
@@ -21,6 +23,10 @@ import Button from "./Button.vue";
 export default {
   components: { Button },
   props: {
+    title: {
+      type: String,
+      default: "标题",
+    },
     visible: {
       type: Boolean,
       default: false,
