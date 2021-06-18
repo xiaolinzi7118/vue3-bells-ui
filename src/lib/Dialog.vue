@@ -1,21 +1,23 @@
 <template>
   <template v-if="visible">
-    <div @click="onClickOverly" class="linzi-dialog-overly"></div>
-    <div class="linzi-dialog-wrapper">
-      <div class="linzi-dialog">
-        <header>
-          {{ title }}
-          <span @click="close" class="linzi-dialog-close"></span>
-        </header>
-        <main>
-          <slot />
-        </main>
-        <footer>
-          <Button @click="ok" level="main">OK</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+    <Teleport to="body">
+      <div @click="onClickOverly" class="linzi-dialog-overly"></div>
+      <div class="linzi-dialog-wrapper">
+        <div class="linzi-dialog">
+          <header>
+            <slot name="title" />
+            <span @click="close" class="linzi-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content" />
+          </main>
+          <footer>
+            <Button @click="ok" level="main">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 <script lang="ts">
@@ -23,10 +25,6 @@ import Button from "./Button.vue";
 export default {
   components: { Button },
   props: {
-    title: {
-      type: String,
-      default: "标题",
-    },
     visible: {
       type: Boolean,
       default: false,
