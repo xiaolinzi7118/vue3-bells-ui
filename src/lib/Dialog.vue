@@ -1,13 +1,16 @@
 <template>
   <template v-if="visible">
-    <div class="linzi-dialog-overly"></div>
+    <div @click="onClickOverly" class="linzi-dialog-overly"></div>
     <div class="linzi-dialog-wrapper">
       <div class="linzi-dialog">
-        <header>标题</header>
+        <header>
+          标题
+          <span @click="close" class="linzi-dialog-close"></span>
+        </header>
         <main>第一行字</main>
         <footer>
-          <Button>OK</Button>
-          <Button>Cancel</Button>
+          <Button @click="ok" level="main">OK</Button>
+          <Button @click="cancel">Cancel</Button>
         </footer>
       </div>
     </div>
@@ -22,6 +25,36 @@ export default {
       type: Boolean,
       default: false,
     },
+    closeOnClickOverly: {
+      type: Boolean,
+      default: true,
+    },
+    ok: {
+      type: Function,
+    },
+    cancel: {
+      type: Function,
+    },
+  },
+  setup(props, context) {
+    const close = () => {
+      context.emit("update:visible", false);
+    };
+    const onClickOverly = () => {
+      if (props.closeOnClickOverly) {
+        close();
+      }
+    };
+    const ok = () => {
+      if (props.ok?.() !== false) {
+        close();
+      }
+    };
+    const cancel = () => {
+      props.cancel?.();
+      close();
+    };
+    return { close, onClickOverly, ok, cancel };
   },
 };
 </script>
@@ -34,7 +67,7 @@ $border-color: #d9d9d9;
   box-shadow: 0 0 3px fade_out(black, 0.5);
   min-width: 15em;
   max-width: 90%;
-  &-overlay {
+  &-overly {
     position: fixed;
     top: 0;
     left: 0;
