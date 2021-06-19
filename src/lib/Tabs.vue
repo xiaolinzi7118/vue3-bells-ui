@@ -9,7 +9,7 @@
         @click="select(t)"
         :ref="
           (el) => {
-            if (el) navItems[index] = el;
+            if (t === selected) selectedItem = el;
           }
         "
       >
@@ -29,7 +29,7 @@
   </div>
 </template>
 <script lang="ts">
-import { onMounted, onUpdated, ref } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -38,25 +38,21 @@ export default {
     },
   },
   setup(props, context) {
-    const navItems = ref<HTMLDivElement[]>([]);
-    //navItems.value是两个导航的div
+    const selectedItem = ref<HTMLDivElement>(null);
+    //selectedItem:被选中的元素
     const indicator = ref<HTMLDivElement>(null);
     const container = ref<HTMLDivElement>(null);
-    const x = () => {
-      const divs = navItems.value;
-      const result = divs.filter((div) =>
-        div.classList.contains("selected")
-      )[0];
-      //result:被选中的元素,紧接着获取它的宽
-      const { width } = result.getBoundingClientRect();
-      indicator.value.style.width = width + "px";
-      const { left: left1 } = container.value.getBoundingClientRect();
-      const { left: left2 } = result.getBoundingClientRect();
-      const left = left2 - left1;
-      indicator.value.style.left = left + "px";
-    };
-    onMounted(x);
-    onUpdated(x);
+    onMounted(() => {
+      watchEffect(() => {
+        //selectedItem:被选中的元素,紧接着获取它的宽
+        const { width } = selectedItem.value.getBoundingClientRect();
+        indicator.value.style.width = width + "px";
+        const { left: left1 } = container.value.getBoundingClientRect();
+        const { left: left2 } = selectedItem.value.getBoundingClientRect();
+        const left = left2 - left1;
+        indicator.value.style.left = left + "px";
+      });
+    });
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
@@ -69,7 +65,7 @@ export default {
     const select = (title: string) => {
       context.emit("update:selected", title);
     };
-    return { defaults, titles, select, navItems, indicator, container };
+    return { defaults, titles, select, selectedItem, indicator, container };
   },
 };
 </script>
