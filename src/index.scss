@@ -4,14 +4,14 @@
   box-sizing: border-box;
 }
 ul,
-ol {
+ol,li {
   list-style: none;
 }
 a {
   text-decoration: none;
   color: inherit;
   &:hover {
-    border-bottom: 1px solid;
+    text-decoration: underline;
     cursor: pointer;
   }
 }
@@ -26,6 +26,8 @@ h6 {
 
 
 body {
+  line-height: 1.5;
+  color: #414b5b;
   font-size: 16px;
   // 为什么这样写 font-family
   // 答案见 https://github.com/zenozeng/fonts.css/
@@ -34,4 +36,10 @@ body {
     "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
     "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
     SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+}
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
