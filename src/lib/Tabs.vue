@@ -1,15 +1,21 @@
 <template>
   <div class="linzi-tabs">
-    <div class="linzi-tabs-nav">
+    <div class="linzi-tabs-nav" ref="container">
       <div
         class="linzi-tabs-nav-item"
         v-for="(t, index) in titles"
         :key="index"
         :class="{ selected: t === selected }"
         @click="select(t)"
+        :ref="
+          (el) => {
+            if (el) navItems[index] = el;
+          }
+        "
       >
         {{ t }}
       </div>
+      <div class="linzi-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="linzi-tabs-content">
       <component
@@ -23,6 +29,7 @@
   </div>
 </template>
 <script lang="ts">
+import { onMounted, onUpdated, ref } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -31,6 +38,25 @@ export default {
     },
   },
   setup(props, context) {
+    const navItems = ref<HTMLDivElement[]>([]);
+    //navItems.value是两个导航的div
+    const indicator = ref<HTMLDivElement>(null);
+    const container = ref<HTMLDivElement>(null);
+    const x = () => {
+      const divs = navItems.value;
+      const result = divs.filter((div) =>
+        div.classList.contains("selected")
+      )[0];
+      //result:被选中的元素,紧接着获取它的宽
+      const { width } = result.getBoundingClientRect();
+      indicator.value.style.width = width + "px";
+      const { left: left1 } = container.value.getBoundingClientRect();
+      const { left: left2 } = result.getBoundingClientRect();
+      const left = left2 - left1;
+      indicator.value.style.left = left + "px";
+    };
+    onMounted(x);
+    onUpdated(x);
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
@@ -43,7 +69,7 @@ export default {
     const select = (title: string) => {
       context.emit("update:selected", title);
     };
-    return { defaults, titles, select };
+    return { defaults, titles, select, navItems, indicator, container };
   },
 };
 </script>
