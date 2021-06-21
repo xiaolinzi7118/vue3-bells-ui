@@ -1,5 +1,5 @@
 <demo>
-禁用框
+支持禁用
 </demo>
 
 <template>

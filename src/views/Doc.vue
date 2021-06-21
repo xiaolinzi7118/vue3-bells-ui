@@ -24,13 +24,16 @@
             <router-link to="/doc/button">Button 按钮</router-link>
           </li>
           <li>
+            <router-link to="/doc/input">Input 输入框</router-link>
+          </li>
+          <li>
             <router-link to="/doc/dialog">Dialog 弹出框</router-link>
           </li>
           <li>
             <router-link to="/doc/tabs">Tabs 标签页</router-link>
           </li>
           <li>
-            <router-link to="/doc/input">Input 输入框</router-link>
+            <router-link to="/doc/toast">Toast 轻提示</router-link>
           </li>
         </ol>
       </aside>

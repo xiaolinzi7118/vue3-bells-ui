@@ -1,13 +1,18 @@
 <template>
   <div class="linzi-input">
     <input
-      class="linzi-input__inner"
+      class="linzi-input_inner"
       :class="{ 'is-disabled': disabled }"
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled"
       @input="inputText"
     />
+    <span v-if="eyes" class="linzi-input_eyes" @click="changeType">
+      <svg class="icon">
+        <use xlink:href="#icon-kejian"></use>
+      </svg>
+    </span>
   </div>
 </template>
 <script lang="ts">
@@ -28,13 +33,23 @@ export default {
       type: Boolean,
       default: false,
     },
+    eyes: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
     const inputText = (e) => {
-      // context.emit("update:text", e.target.value);
-      console.log(e.target.value);
+      context.emit("update:text", e.target.value);
     };
-    return { inputText };
+    const changeType = () => {
+      if (props.type === "password") {
+        context.emit("update:type", "text");
+      } else {
+        context.emit("update:type", "password");
+      }
+    };
+    return { inputText, changeType };
   },
 };
 </script>
@@ -43,7 +58,7 @@ export default {
   position: relative;
   font-size: 14px;
   display: inline-block;
-  .linzi-input__inner {
+  .linzi-input_inner {
     display: inline-block;
     background-color: #fff;
     border-radius: 4px;
@@ -66,6 +81,16 @@ export default {
       border-color: #e4e7ed;
       color: #c0c4cc;
       cursor: not-allowed;
+    }
+  }
+  .linzi-input_eyes {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    cursor: pointer;
+    > svg {
+      width: 1em;
+      height: 1em;
     }
   }
 }
