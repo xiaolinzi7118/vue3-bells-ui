@@ -4,8 +4,8 @@
     <div class="demo-component">
       <component :is="component" />
     </div>
-    <div class="demo-actions">
-      <Button @click="toggleCode">查看代码</Button>
+    <div class="demo-actions" @click="toggleCode">
+      {{ codeVisible === true ? "隐藏代码" : "显示代码" }}
     </div>
     <div class="demo-code" v-if="codeVisible">
       <pre class="language-html" v-html="html" />
@@ -14,15 +14,11 @@
 </template>
 
 <script lang="ts">
-import Button from "../lib/Button.vue";
 import "prismjs";
 import "prismjs/themes/prism.css";
 import { computed, ref } from "vue";
 const Prism = (window as any).Prism;
 export default {
-  components: {
-    Button,
-  },
   props: {
     component: Object,
   },
@@ -34,8 +30,8 @@ export default {
         "html"
       );
     });
-    const toggleCode = () => (codeVisible.value = !codeVisible.value);
     const codeVisible = ref(false);
+    const toggleCode = () => (codeVisible.value = !codeVisible.value);
     return {
       Prism,
       html,
@@ -47,12 +43,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$border-color: #d9d9d9;
+$border-color: #ebebeb;
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
+  &:hover {
+    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+      0 2px 4px 0 rgba(232, 237, 250, 0.5);
+  }
   > h2 {
-    font-size: 20px;
+    font-size: 18px;
     padding: 8px 16px;
     border-bottom: 1px solid $border-color;
   }
@@ -60,10 +60,19 @@ $border-color: #d9d9d9;
     padding: 16px;
   }
   &-actions {
+    cursor: pointer;
+    text-align: center;
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
+    color: #ccc;
+    &:hover {
+      color: #4d86af;
+      background-color: #f9fafc;
+    }
   }
   &-code {
+    overflow-x: auto;
+    min-width: 300px;
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
     > pre {
