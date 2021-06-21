@@ -64,7 +64,6 @@ $border-color: #ebebeb;
     text-align: center;
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
-    color: #ccc;
     &:hover {
       color: #4d86af;
       background-color: #f9fafc;

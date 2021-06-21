@@ -63,54 +63,66 @@ export default {
   overflow-x: hidden;
   > .nav {
     flex-shrink: 0;
+    background: rgb(194, 221, 232);
+    background: linear-gradient(
+      90deg,
+      rgba(194, 221, 232, 1) 0%,
+      rgba(242, 218, 213, 1) 100%
+    );
   }
   > .content {
-    background: white;
+    background: rgb(194, 221, 232);
+    background: linear-gradient(
+      180deg,
+      rgba(194, 221, 232, 1) 0%,
+      rgba(242, 218, 213, 1) 100%
+    );
+    display: flex;
     flex-grow: 1;
-    padding-top: 80px;
+    padding-top: 74px;
     padding-left: 156px;
     @media (max-width: 500px) {
       padding-left: 0;
     }
-  }
-}
-.content {
-  display: flex;
-  > aside {
-    flex-shrink: 0;
-  }
-  > main {
-    flex-grow: 1;
-    padding: 16px;
-    background: white;
-  }
-}
-aside {
-  width: 150px;
-  padding: 16px 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding-top: 70px;
-  height: 100%;
-  z-index: 10;
-  > h2 {
-    margin-bottom: 4px;
-    padding: 0 16px;
-  }
-  > ol {
-    > li {
-      > a {
-        display: block;
-        padding: 4px 16px;
+    > aside {
+      flex-shrink: 0;
+      width: 150px;
+      padding: 90px 0 90px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 10;
+      @media (max-width: 500px) {
+        background: rgb(194, 221, 232);
+        background: linear-gradient(
+          180deg,
+          rgba(194, 221, 232, 1) 0%,
+          rgba(242, 218, 213, 1) 100%
+        );
       }
-      .router-link-active {
-        background-color: white;
+      > h2 {
+        margin-bottom: 4px;
+        padding: 0 16px;
+      }
+      > ol {
+        > li {
+          > a {
+            display: block;
+            padding: 4px 16px;
+          }
+          .router-link-active {
+            background-color: white;
+          }
+        }
       }
     }
+    > main {
+      overflow: auto;
+      flex-grow: 1;
+      padding: 16px;
+      background: rgba($color: #000, $alpha: 0.1);
+    }
   }
-}
-main {
-  overflow: auto;
 }
 </style>
