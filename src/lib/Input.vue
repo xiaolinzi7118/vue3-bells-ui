@@ -2,8 +2,10 @@
   <div class="linzi-input">
     <input
       class="linzi-input__inner"
-      type="text"
+      :class="{ 'is-disabled': disabled }"
+      :type="type"
       :placeholder="placeholder"
+      :disabled="disabled"
       @input="inputText"
     />
   </div>
@@ -18,10 +20,19 @@ export default {
     text: {
       type: String,
     },
+    type: {
+      type: String,
+      default: "text",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
     const inputText = (e) => {
-      context.emit("update:text", e.target.value);
+      // context.emit("update:text", e.target.value);
+      console.log(e.target.value);
     };
     return { inputText };
   },
