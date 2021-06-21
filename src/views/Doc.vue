@@ -60,12 +60,14 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow-x: hidden;
   > .nav {
     flex-shrink: 0;
   }
   > .content {
+    background: white;
     flex-grow: 1;
-    padding-top: 60px;
+    padding-top: 80px;
     padding-left: 156px;
     @media (max-width: 500px) {
       padding-left: 0;
@@ -84,7 +86,6 @@ export default {
   }
 }
 aside {
-  background: lightblue;
   width: 150px;
   padding: 16px 0;
   position: fixed;

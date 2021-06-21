@@ -3,7 +3,7 @@
     <div class="all-wrapper">
       <Topnav />
       <div class="banner">
-        <h1>铃铛UI</h1>
+        <h1>铃铛 UI</h1>
         <h2>一个厉害的UI框架</h2>
         <p class="actions">
           <a href="">GitHub</a>
@@ -45,18 +45,11 @@ export default {
 };
 </script>
 <style scoped lang='scss'>
-.wrapper {
-  width: 100vw;
-  height: 100vh;
-  background: rgb(53, 248, 252);
-  background: linear-gradient(
-    90deg,
-    rgba(53, 248, 252, 1) 0%,
-    rgba(245, 122, 234, 1) 100%
-  );
-}
 .banner {
-  padding: 100px 0;
+  padding-top: 100px;
+  @media (min-width: 800px) {
+    padding-top: 200px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,19 +73,22 @@ export default {
 }
 .introduce {
   margin: 64px auto;
-  padding: 0 16px;
   @media (min-width: 800px) {
+    margin: 120px auto;
     width: 800px;
   }
   @media (min-width: 1200px) {
+    margin: 120px auto;
     width: 1200px;
   }
   > ul {
     display: flex;
     flex-wrap: wrap;
     > li {
-      width: 400px;
-      margin: 16px 0;
+      border-radius: 16px;
+      width: 360px;
+      margin: 16px 5px 0 35px;
+      padding: 4px 10px;
       display: grid;
       justify-content: start;
       align-content: space-between;

@@ -9,7 +9,7 @@
     </div>
     <div class="menu">
       <li>
-        <router-link to="/doc">文档</router-link>
+        <router-link to="/doc"> 文档 </router-link>
       </li>
     </div>
     <span v-if="isVisible" class="toggleAside" @click="ToggleAside">
@@ -40,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 .topnav {
   display: flex;
-  padding: 16px;
+  padding: 10px 16px;
   position: fixed;
   top: 0;
   left: 0;
@@ -48,7 +48,7 @@ export default {
   z-index: 20;
   justify-content: center;
   align-items: center;
-  // box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
+  box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
   > .logo {
     max-width: 6em;
     margin-right: auto;
