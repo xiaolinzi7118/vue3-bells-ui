@@ -66,7 +66,7 @@ $border-color: #ebebeb;
     border-top: 1px dashed $border-color;
     &:hover {
       color: #4d86af;
-      background-color: #f9fafc;
+      background-color: #ffffff;
     }
   }
   &-code {

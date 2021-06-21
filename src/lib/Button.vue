@@ -16,10 +16,6 @@ export default {
       type: String,
       default: "normal",
     },
-    level: {
-      type: String,
-      default: "normal",
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -30,12 +26,11 @@ export default {
     },
   },
   setup(props) {
-    const { theme, size, level } = props;
+    const { theme, size } = props;
     const classes = computed(() => {
       return {
         [`linzi-theme-${theme}`]: theme,
         [`linzi-size-${size}`]: size,
-        [`linzi-level-${level}`]: level,
       };
     });
     return { classes };
@@ -50,6 +45,7 @@ $blue: #40a9ff;
 $radius: 4px;
 $red: red;
 $grey: grey;
+$green: #28a745;
 .linzi-button {
   box-sizing: border-box;
   height: $h;
@@ -85,16 +81,47 @@ $grey: grey;
     color: $blue;
     &:hover,
     &:focus {
-      color: lighten($blue, 10%);
+      text-decoration: underline;
     }
   }
   &.linzi-theme-text {
-    border-color: transparent;
-    box-shadow: none;
-    color: inherit;
+    color: white;
+    background-color: #909399;
     &:hover,
     &:focus {
-      background: darken(white, 5%);
+      background-color: darken(#909399, 5%);
+      border-color: white;
+    }
+  }
+  &.linzi-theme-main {
+    background: $blue;
+    color: white;
+    border-color: $blue;
+    &:hover,
+    &:focus {
+      background: darken($blue, 10%);
+      border-color: darken($blue, 10%);
+    }
+  }
+  &.linzi-theme-success {
+    background: $green;
+    border-color: $green;
+    color: white;
+    &:hover,
+    &:focus {
+      background: white;
+      border-color: $green;
+      color: $green;
+    }
+  }
+  &.linzi-theme-danger {
+    background: $red;
+    border-color: $red;
+    color: white;
+    &:hover,
+    &:focus {
+      background: darken($red, 10%);
+      border-color: darken($red, 10%);
     }
   }
   &.linzi-size-big {
@@ -106,53 +133,6 @@ $grey: grey;
     font-size: 12px;
     height: 20px;
     padding: 0 4px;
-  }
-  &.linzi-theme-button {
-    &.linzi-level-main {
-      background: $blue;
-      color: white;
-      border-color: $blue;
-      &:hover,
-      &:focus {
-        background: darken($blue, 10%);
-        border-color: darken($blue, 10%);
-      }
-    }
-    &.linzi-level-danger {
-      background: $red;
-      border-color: $red;
-      color: white;
-      &:hover,
-      &:focus {
-        background: darken($red, 10%);
-        border-color: darken($red, 10%);
-      }
-    }
-  }
-  &.linzi-theme-link {
-    &.linzi-level-danger {
-      color: $red;
-      &:hover,
-      &:focus {
-        color: darken($red, 10%);
-      }
-    }
-  }
-  &.linzi-theme-text {
-    &.linzi-level-main {
-      color: $blue;
-      &:hover,
-      &:focus {
-        color: darken($blue, 10%);
-      }
-    }
-    &.linzi-level-danger {
-      color: $red;
-      &:hover,
-      &:focus {
-        color: darken($red, 10%);
-      }
-    }
   }
   &.linzi-theme-button {
     &[disabled] {
