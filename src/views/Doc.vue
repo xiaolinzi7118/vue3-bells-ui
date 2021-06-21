@@ -2,7 +2,7 @@
   <div class="layout">
     <Topnav class="nav" isVisible="true" />
     <div class="content">
-      <aside v-if="asideVisible">
+      <aside :class="{ visible: asideVisible }">
         <h2>文档</h2>
         <ol>
           <li>
@@ -81,9 +81,6 @@ export default {
     flex-grow: 1;
     padding-top: 74px;
     padding-left: 156px;
-    @media (max-width: 500px) {
-      padding-left: 0;
-    }
     > aside {
       flex-shrink: 0;
       width: 150px;
@@ -93,14 +90,6 @@ export default {
       left: 0;
       height: 100%;
       z-index: 10;
-      @media (max-width: 500px) {
-        background: rgb(194, 221, 232);
-        background: linear-gradient(
-          180deg,
-          rgba(194, 221, 232, 1) 0%,
-          rgba(242, 218, 213, 1) 100%
-        );
-      }
       > h2 {
         margin-bottom: 4px;
         padding: 0 16px;
@@ -122,6 +111,31 @@ export default {
       flex-grow: 1;
       padding: 16px;
       background: rgba($color: #000, $alpha: 0.1);
+    }
+  }
+}
+@media (max-width: 500px) {
+  .layout {
+    > .content {
+      padding-left: 0;
+      > aside {
+        background: rgb(194, 221, 232);
+        background: linear-gradient(
+          180deg,
+          rgba(194, 221, 232, 1) 0%,
+          rgba(242, 218, 213, 1) 100%
+        );
+        transition: all 0.25s linear;
+        transform: translateX(-200px);
+        &.visible {
+          transform: translateX(0px);
+        }
+      }
+      > main {
+        overflow: auto;
+        padding: 20px 8px;
+        margin: 0 auto;
+      }
     }
   }
 }
