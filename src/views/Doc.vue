@@ -37,20 +37,58 @@
           </li>
         </ol>
       </aside>
-      <main>
+      <main @click="toggleAsideVisible">
         <router-view />
       </main>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { inject, Ref } from "vue";
+import {
+  inject,
+  onMounted,
+  onUnmounted,
+  reactive,
+  Ref,
+  watchEffect,
+} from "vue";
+import { debounce } from "../utils/debounce";
 import Topnav from "../components/Topnav.vue";
 export default {
   components: { Topnav },
   setup() {
     const asideVisible = inject<Ref<boolean>>("asideVisible"); // get
-    return { asideVisible };
+    const data = reactive({
+      listenerPageWidthFn: () => {},
+      pageWidth: document.documentElement.clientWidth,
+    });
+    const watchPageWidth = () => {
+      const listenerPageWidth = debounce(() => {
+        data.pageWidth = document.documentElement.clientWidth;
+      }, 300);
+      window.addEventListener("resize", listenerPageWidth);
+      return listenerPageWidth;
+    };
+    const toggleAsideVisible = () => {
+      if (data.pageWidth <= 500) {
+        asideVisible.value = false;
+      }
+    };
+    watchEffect(() => {
+      if (data.pageWidth > 500) {
+        asideVisible.value = true;
+      }
+    });
+    onMounted(() => {
+      data.listenerPageWidthFn = watchPageWidth();
+    });
+    onUnmounted(() => {
+      window.removeEventListener("resize", data.listenerPageWidthFn);
+    });
+    return {
+      asideVisible,
+      toggleAsideVisible,
+    };
   },
 };
 </script>

@@ -28,7 +28,7 @@ export default {
         params: "theme",
         desc: "选择主题样式",
         type: "String",
-        select: "button | main | success | danger | link | text",
+        select: "main | success | danger | link | text",
         default: "button",
       },
       {
