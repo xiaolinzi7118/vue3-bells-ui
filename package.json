@@ -1,6 +1,10 @@
 {
   "name": "linzi-bells-ui",
   "version": "0.0.0",
+  "files": [
+    "dist/lib/*"
+  ],
+  "main": "dist/lib/linzi-bells-ui.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

@@ -4,7 +4,7 @@
 
 然后在你的代码中写入下面的代码
 
-`import {Button, Tabs, Switch, Dialog} from "king-ui"`
+`import {Switch, Button, Input, Dialog, Tabs,Toast} from "linzi-bells-ui"`
 
 就可以使用我提供的组件了。
 
@@ -19,9 +19,11 @@
   </div>
 </template>
 <script>
-import {Button, Tabs, Switch, Dialog} from "king-ui"
+import {Button, Tabs, Switch, Dialog} from "linzi-bells-ui"
 export default {
   components: {Button}
 }
 </script>
 ```
+
+下一节：[Switch开关](#/doc/switch)
