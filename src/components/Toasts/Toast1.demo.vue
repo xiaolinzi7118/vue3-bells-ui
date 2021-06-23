@@ -6,7 +6,7 @@
   <Toast text="点击提示" value="轻提示" />
 </template>
 <script lang="ts">
-import Toast from "../../lib/Toast.vue";
+import { Toast } from "../../lib/index";
 export default {
   components: {
     Toast,

@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { ref } from "vue";
-import Input from "../../lib/Input.vue";
+import { Input } from "../../lib/index";
 export default {
   components: { Input },
   setup() {

@@ -10,13 +10,12 @@
 </template>
 
 <script lang="ts">
-import Tabs from "../../lib/Tabs.vue";
-import Tab from "../../lib/Tab.vue";
+import { Tab, Tabs } from "../../lib/index";
 import { ref } from "vue";
 export default {
   components: {
-    Tabs,
     Tab,
+    Tabs,
   },
   setup() {
     const x = ref("导航1");

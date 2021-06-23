@@ -2,11 +2,13 @@
 
 请先安装本组件库。
 
-然后在你的代码中写入下面的代码
+然后在你的代码中写入下面的代码:
 
 `import {Switch, Button, Input, Dialog, Tab, Tabs,Toast} from "linzi-bells-ui"`
 
-引入样式
+（注意：详细组件里的代码引用路径为相对路径）
+
+引入样式:
 
 `import 'linzi-bells-ui/dist/lib/linzi-bells-ui.css'`
 

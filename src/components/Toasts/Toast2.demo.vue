@@ -10,7 +10,7 @@
   </div>
 </template>
 <script lang="ts">
-import Toast from "../../lib/Toast.vue";
+import { Toast } from "../../lib/index";
 export default {
   components: {
     Toast,
