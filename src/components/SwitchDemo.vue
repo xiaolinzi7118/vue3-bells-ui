@@ -5,6 +5,11 @@
     <Demo :component="Switch2Demo" />
     <Attributes :data="data" />
   </div>
+  <FooterNav
+    :lastPage="{ route: '/doc/get-started', content: '开始使用' }"
+    :nextPage="{ route: '/doc/button', content: 'Button 按钮' }"
+  >
+  </FooterNav>
 </template>
 
 <script lang="ts">
@@ -13,10 +18,12 @@ import Switch2Demo from "./Switchs/Switch2.demo.vue";
 import Demo from "./Demo.vue";
 import { ref } from "vue";
 import Attributes from "./Attributes.vue";
+import FooterNav from "./FooterNav.vue";
 export default {
   components: {
     Demo,
     Attributes,
+    FooterNav,
   },
   setup() {
     const data = ref([

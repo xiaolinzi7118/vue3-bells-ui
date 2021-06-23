@@ -4,6 +4,11 @@
   <Demo :component="Input2Demo" />
   <Demo :component="Input3Demo" />
   <Attributes :data="data" />
+  <FooterNav
+    :lastPage="{ route: '/doc/button', content: 'Button 按钮' }"
+    :nextPage="{ route: '/doc/dialog', content: 'Dialog 弹出框' }"
+  >
+  </FooterNav>
 </template>
 <script lang="ts">
 import Demo from "./Demo.vue";
@@ -12,8 +17,9 @@ import Input2Demo from "./Inputs/Input2.demo.vue";
 import Input3Demo from "./Inputs/Input3.demo.vue";
 import { ref } from "vue";
 import Attributes from "./Attributes.vue";
+import FooterNav from "./FooterNav.vue";
 export default {
-  components: { Demo, Attributes },
+  components: { Demo, Attributes, FooterNav },
   setup() {
     const data = ref([
       {

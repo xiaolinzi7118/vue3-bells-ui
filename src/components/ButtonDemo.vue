@@ -7,6 +7,11 @@
     <Demo :component="Button4Demo" />
     <Attributes :data="data" />
   </div>
+  <FooterNav
+    :lastPage="{ route: '/doc/switch', content: 'Switch 开关' }"
+    :nextPage="{ route: '/doc/input', content: 'Input 输入框' }"
+  >
+  </FooterNav>
 </template>
 
 <script lang="ts">
@@ -17,10 +22,12 @@ import Button3Demo from "./Buttons/Button3.demo.vue";
 import Button4Demo from "./Buttons/Button4.demo.vue";
 import { ref } from "vue";
 import Attributes from "./Attributes.vue";
+import FooterNav from "./FooterNav.vue";
 export default {
   components: {
     Demo,
     Attributes,
+    FooterNav,
   },
   setup() {
     const data = ref([

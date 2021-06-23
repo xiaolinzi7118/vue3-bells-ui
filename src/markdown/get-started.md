@@ -26,4 +26,4 @@ export default {
 </script>
 ```
 
-下一节：[Switch开关](#/doc/switch)
+下一节：[Switch 开关](#/doc/switch)

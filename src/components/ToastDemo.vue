@@ -4,6 +4,8 @@
   <Demo :component="Toast2Demo" />
   <Demo :component="Toast3Demo" />
   <Attributes :data="data" />
+  <FooterNav :lastPage="{ route: '/doc/tabs', content: 'Tabs 标签页' }">
+  </FooterNav>
 </template>
 <script lang="ts">
 import Demo from "./Demo.vue";
@@ -12,8 +14,9 @@ import Toast2Demo from "./Toasts/Toast2.demo.vue";
 import Toast3Demo from "./Toasts/Toast3.demo.vue";
 import { ref } from "vue";
 import Attributes from "./Attributes.vue";
+import FooterNav from "./FooterNav.vue";
 export default {
-  components: { Demo, Attributes },
+  components: { Demo, Attributes, FooterNav },
   setup() {
     const data = ref([
       {

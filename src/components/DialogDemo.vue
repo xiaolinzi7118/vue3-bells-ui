@@ -3,6 +3,11 @@
   <Demo :component="Dialog1Demo" />
   <Demo :component="Dialog2Demo" />
   <Attributes :data="data" />
+  <FooterNav
+    :lastPage="{ route: '/doc/input', content: 'Input 输入框' }"
+    :nextPage="{ route: '/doc/tabs', content: 'Tabs 标签页' }"
+  >
+  </FooterNav>
 </template>
 
 <script lang="ts">
@@ -11,10 +16,12 @@ import Dialog1Demo from "./Dialogs/Dialog1.demo.vue";
 import Dialog2Demo from "./Dialogs/Dialog2.demo.vue";
 import { ref } from "vue";
 import Attributes from "./Attributes.vue";
+import FooterNav from "./FooterNav.vue";
 export default {
   components: {
     Demo,
     Attributes,
+    FooterNav,
   },
   setup() {
     const data = ref([
